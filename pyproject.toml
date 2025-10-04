@@ -1,0 +1,10 @@
+[project]
+name = "azure-tables"
+version = "0.1.0"
+description = "Dumps all pre-defined tables within a Sentinel enabled Azure Log Analytics workspace"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "azure-identity>=1.25.0",
+    "requests>=2.32.5",
+]
