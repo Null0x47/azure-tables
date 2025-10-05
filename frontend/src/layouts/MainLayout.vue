@@ -73,7 +73,7 @@
                     v-bind:key="selectedTable['properties']['schema']['name'] + '.' + column['name']"
                   >
                     <td class="text-left">{{ column['name'] }}</td>
-                    <td class="text-left" style="max-width: 20px !important;"><q-badge color="grey-7">{{ column['type'] }}</q-badge></td>
+                    <td class="text-left"><q-badge color="grey-7">{{ column['type'] }}</q-badge></td>
                     <td class="text-left">{{ column['isHidden'] }}</td>
                     <td class="text-left" v-if="column['description']">{{ column['description'] }}</td>
                     <td class="text-left" v-else>-</td>
