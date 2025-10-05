@@ -1,0 +1,31 @@
+// app global css in SCSS form
+.q-icon-section {
+    max-width: 20px;
+}
+
+.q-tables-list {
+    margin-top: 5px;
+}
+
+.q-table-container {
+    padding: 15px;
+}
+
+.q-solution-badge {
+    margin-right: 5px;
+}
+
+.q-table-filter {
+    padding: 15px 15px 5px 15px;
+}
+
+.q-table {
+    td {
+        word-wrap: break-word;
+        white-space: break-spaces;
+    }
+}
+
+.q-drawer__content {
+    overflow: hidden;
+}
