@@ -19,27 +19,29 @@
           </template>
         </q-input>
       </div>
-      <q-list dense class="rounded-borders q-tables-list">
-        <q-item
-          clickable
-          v-ripple
-          v-for="table in tablesFiltered" v-bind:key="table['properties']['schema']['name']"
-          @click="selectTable(table)"
-        >
-          <q-item-section class="q-icon-section">
-            <q-icon name="data_object" size="20px"/>
-          </q-item-section>
-          <q-item-section class="q-table-name-section">
-            {{ table["properties"]["schema"]["name"] }}
-          </q-item-section>
-        </q-item>
-      </q-list>
+      <q-scroll-area style="height: 100%; max-width: 400px;">
+        <q-list dense class="rounded-borders q-tables-list">
+          <q-item
+            clickable
+            v-ripple
+            v-for="table in tablesFiltered" v-bind:key="table['properties']['schema']['name']"
+            @click="selectTable(table)"
+          >
+            <q-item-section class="q-icon-section">
+              <q-icon name="data_object" size="20px"/>
+            </q-item-section>
+            <q-item-section class="q-table-name-section">
+              {{ table["properties"]["schema"]["name"] }}
+            </q-item-section>
+          </q-item>
+        </q-list>
+      </q-scroll-area>
     </q-drawer>
 
     <q-page-container>
       <template v-if="selectedTable !== null">
         <div class="q-table-container">
-          <q-card flat class="my-card">
+          <q-card flat style="height: 100%;">
             <q-card-section>
               <div class="text-h6">{{ selectedTable["properties"]["schema"]["name"] }}</div>
             </q-card-section>
@@ -56,22 +58,25 @@
             </q-card-section>
 
             <q-card-section>
-              <q-markup-table flat>
+              <q-markup-table flat dense>
                 <thead>
                   <tr>
-                    <th class="text-left">Name</th>
-                    <th class="text-left">Type</th>
+                    <th class="text-left">Column Name</th>
+                    <th class="text-left">Data Type</th>
+                    <th class="text-left">Hidden</th>
                     <th class="text-left">Description</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr 
+                  <tr
                     v-for="column in selectedTable['properties']['schema']['standardColumns']"
                     v-bind:key="selectedTable['properties']['schema']['name'] + '.' + column['name']"
                   >
                     <td class="text-left">{{ column['name'] }}</td>
-                    <td class="text-left">{{ column['type'] }}</td>
-                    <td class="text-left">{{ column['description'] }}</td>
+                    <td class="text-left" style="max-width: 20px !important;"><q-badge color="grey-7">{{ column['type'] }}</q-badge></td>
+                    <td class="text-left">{{ column['isHidden'] }}</td>
+                    <td class="text-left" v-if="column['description']">{{ column['description'] }}</td>
+                    <td class="text-left" v-else>-</td>
                   </tr>
                 </tbody>
               </q-markup-table>

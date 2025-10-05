@@ -18,3 +18,14 @@
 .q-table-filter {
     padding: 15px 15px 5px 15px;
 }
+
+.q-table {
+    td {
+        word-wrap: break-word;
+        white-space: break-spaces;
+    }
+}
+
+.q-drawer__content {
+    overflow: hidden;
+}
