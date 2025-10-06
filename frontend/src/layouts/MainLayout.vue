@@ -7,6 +7,7 @@
         <q-toolbar-title>
           <strong>Azure Tables</strong>
         </q-toolbar-title>
+        <q-btn flat round dense icon="ion-logo-github" @click="openGithub()"/>
       </q-toolbar>
     </q-header>
 
@@ -28,7 +29,7 @@
             @click="selectTable(table)"
           >
             <q-item-section class="q-icon-section">
-              <q-icon name="data_object" size="20px"/>
+              <q-icon name="table_view" size="20px"/>
             </q-item-section>
             <q-item-section class="q-table-name-section">
               {{ table["properties"]["schema"]["name"] }}
@@ -43,7 +44,10 @@
         <div class="q-table-container">
           <q-card flat style="height: 100%;">
             <q-card-section>
-              <div class="text-h6">{{ selectedTable["properties"]["schema"]["name"] }}</div>
+              <div class="text-h6">
+                <q-icon name="data_object" size="25px"/>
+                {{ selectedTable["properties"]["schema"]["name"] }}
+              </div>
             </q-card-section>
 
             <q-card-section class="q-pt-none">
@@ -136,6 +140,10 @@ const findTableByName = (name) => {
     }
   });
   return foundTable;
+}
+
+const openGithub = () => {
+  window.open("https://github.com/Null0x47/azure-tables", "_blank");
 }
 
 axios.get('https://raw.githubusercontent.com/Null0x47/azure-tables/refs/heads/main/tables.json')
