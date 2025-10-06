@@ -43,4 +43,4 @@ curl -X GET \
   "https://management.azure.com/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.OperationalInsights/workspaces/<WORKSPACE_NAME>/tables?api-version=2025-07-01"
 ```
 
-Make sure to replace placeholders (`<ACCESS_TOKEN>`, `<SUBSCRIPTION_ID>` and `<RESOURCE_GROUP>`) with your actual values.
+Make sure to replace placeholders (`<ACCESS_TOKEN>`, `<SUBSCRIPTION_ID>`, `<RESOURCE_GROUP>` and `WORKSPACE_NAME`) with your actual values.
