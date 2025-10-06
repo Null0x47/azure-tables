@@ -45,7 +45,6 @@
           <q-card flat style="height: 100%;">
             <q-card-section>
               <div class="text-h6">
-                <q-icon name="data_object" size="25px"/>
                 {{ selectedTable["properties"]["schema"]["name"] }}
               </div>
             </q-card-section>
