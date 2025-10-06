@@ -7,7 +7,7 @@ Documentation for Microsoft cloud security logging can sometimes be difficult to
 To run the container use the pre-built image:
 
 ```bash
-docker run -p 8080:80 --name azure-tables null0x47/azure-tables:latest
+docker run -p 8080:80 null0x47/azure-tables:latest
 ```
 
 Alternatively, you can use the provided `docker-compose.yml` file to build and run the image locally:
