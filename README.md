@@ -18,7 +18,7 @@ curl -X GET \
   "https://management.azure.com/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.OperationalInsights/workspaces/<WORKSPACE_NAME>/tables?api-version=2021-12-01-preview"
 ```
 
-If we run this on a fresh LAW without Sentinel enabled it returns 618 tables. Once we enable Sentinel for our LAW it adds the table definitions that are needed to support all available data connectors. If we run this after enabling Sentinel we get a total of 740 tables! In my experience this is the most complete list of (security) logs + definitions related to Microsoft cloud products.
+If we run this on a fresh LAW without Sentinel enabled it already returns most supported tables. Once we enable Sentinel for our LAW it adds the table definitions that are needed to support all available data connectors. In my experience this is the most complete list of (security) logs + definitions related to Microsoft cloud products.
 
 This repository also provides a python script that does the same as the curl command mentioned above. It also updates the `tables.json` file located in the root of this project:
 
