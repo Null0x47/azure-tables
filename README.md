@@ -2,6 +2,8 @@
 
 Documentation for Microsoft cloud security logging can sometimes be difficult to locate or navigate. Fortunately, Azure Log Analytics workspaces provide predefined table schemas for most (if not all) relevant security logs, enabling streamlined log ingestion. Leveraging the Azure Management API, I queried these tables and developed a lightweight frontend to make the JSON response easily searchable.
 
+![alt text](https://github.com/Null0x47/azure-tables/blob/main/screenshot.png?raw=true)
+
 ## Running Locally with Docker
 
 To run the container use the pre-built image:
