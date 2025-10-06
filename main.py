@@ -3,7 +3,7 @@ import json
 import requests
 from azure.identity import DefaultAzureCredential
 
-API_VERSION = "2021-12-01-preview"
+API_VERSION = "2025-07-01"
 
 if __name__ == "__main__":
     subscription_id = input("Subscription ID: ")
