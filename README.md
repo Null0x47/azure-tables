@@ -1,33 +1,46 @@
 # Azure Tables
 
-Overview of all pre-defined tables within a Sentinel enabled Azure Log Analytics workspace
+Documentation for Microsoft cloud security logging can sometimes be difficult to locate or navigate. Fortunately, Azure Log Analytics workspaces provide predefined table schemas for most (if not all) relevant security logs, enabling streamlined log ingestion. Leveraging the Azure Management API, I queried these tables and developed a lightweight frontend to make the JSON response easily searchable.
 
-## The Problem
+## Running Locally with Docker
 
-As a defensive security engineer, one of my biggest frustrations with Microsoft Azure, Microsoft 365, and Entra ID is the lack of consistent, centralized documentation for their security logs. While many Defender XDR-related logs are documented on learn.microsoft.com, they’re often outdated. Documentation for other logs is even more difficult to locate, as it’s scattered across various Microsoft products and platforms.
-
-## The Solution
-
-We can create this documentation ourselves by dumping the pre-defined tables from a Log Analytics workspace via the 
-Azure management api:
+To run the container use the pre-built image:
 
 ```bash
-curl -X GET \
-  -H "Authorization: Bearer <ACCESS_TOKEN>" \
-  -H "Content-Type: application/json" \
-  "https://management.azure.com/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.OperationalInsights/workspaces/<WORKSPACE_NAME>/tables?api-version=2021-12-01-preview"
+docker run -p 8080:80 --name azure-tables null0x47/azure-tables:latest
 ```
 
-If we run this on a fresh LAW without Sentinel enabled it already returns most supported tables. Once we enable Sentinel for our LAW it adds the table definitions that are needed to support all available data connectors. In my experience this is the most complete list of (security) logs + definitions related to Microsoft cloud products.
+Alternatively, you can use the provided `docker-compose.yml` file to build and run the image locally:
 
-This repository also provides a python script that does the same as the curl command mentioned above. It also updates the `tables.json` file located in the root of this project:
+```bash
+docker compose up
+```
+
+Once the container is running, the frontend will be accessible at: `localhost:8080`
+
+## Exporting Table Definitions
+
+The exported Azure Log Analytics table definitions are included in this repository as `tables.json`, located at the project root.
+
+### Running Your Own Export
+
+To generate your own export, a Python script is provided. It requires a `Subscription ID`, `Resource Group` and `Workspace Name`. The script uses `DefaultAzureCredential` for authentication, so a valid Azure CLI session is required.
+
+Run the script using uv (or adjust for your environment):
 
 ```bash
 uv sync && uv run main.py
 ```
 
-This script will ask for the `Subscription ID`, `Resource Group` and `Workspace Name`. It uses `DefaultAzureCredential` for authentication so it requires you to have a valid session on your machine. This can be acquired via the Azure CLI:
+### Manual API Request
+
+If you prefer to interact with the Azure Management API directly, you can use the following curl command to retrieve the LAW table definitions:
 
 ```bash
-az login
+curl -X GET \
+  -H "Authorization: Bearer <ACCESS_TOKEN>" \
+  -H "Content-Type: application/json" \
+  "https://management.azure.com/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.OperationalInsights/workspaces/<WORKSPACE_NAME>/tables?api-version=2025-07-01"
 ```
+
+Make sure to replace placeholders (`<ACCESS_TOKEN>`, `<SUBSCRIPTION_ID>` and `<RESOURCE_GROUP>`) with your actual values.
